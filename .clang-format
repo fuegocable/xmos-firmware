@@ -1,0 +1,37 @@
+---
+Language: Cpp
+BasedOnStyle: LLVM
+
+# --- Visual Constraints ---
+ColumnLimit: 100
+IndentWidth: 4
+UseTab: Never
+LineEnding: LF
+
+# --- Layout & Safety ---
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass: false
+  AfterControlStatement: Never
+  AfterEnum: false
+  AfterFunction: true
+  AfterNamespace: false
+  AfterStruct: false
+  AfterUnion: false
+  BeforeElse: false
+  BeforeWhile: false
+IndentCaseLabels: true
+
+# --- Embedded Specific Alignments ---
+AlignConsecutiveMacros: true
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: false
+AlignConsecutiveBitFields: true
+AlignAfterOpenBracket: Align
+
+# --- Pointer Placement (Hardware Drivers) ---
+PointerAlignment: Right
+
+# --- Code Cleanup ---
+SortIncludes: true
+...

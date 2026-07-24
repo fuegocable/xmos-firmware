@@ -1,0 +1,54 @@
+# Tmp files & logs
+*.settings
+*.bin
+*.zip
+*.log
+*.vcd
+*.swp
+*.*~
+*.xmt
+*.swo
+*.swn
+*~
+*.DS_Store
+
+# Python
+*.pyc
+**/*.egg-info/
+**/*venv/*
+
+# XMOS temp files
+**/*build*/*
+*/bin/*
+_build
+**/flash_bin_node*
+**/fw-*
+**/s2l-*
+**/spanning-xn-*
+**/target-xn*
+*.xi
+*.o
+*.i
+*.a
+
+# XMOS binaries
+*.xe
+
+# Regression test files
+tests/xmosdfu
+tests/xsig
+legacy_tests/recording*.wav
+legacy_tests/plot*.pdf
+legacy_tests/generated_*.wav
+*/test_results.csv
+
+# Built documentation
+doc/pdf/sw_usb_audio.pdf
+toplevel_doc
+Bach_loopback.mid
+.gdb_history
+
+# Sandbox
+sandbox
+
+.vscode
