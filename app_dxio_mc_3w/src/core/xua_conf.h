@@ -1,5 +1,4 @@
-#ifndef _XUA_CONF_H_
-#define _XUA_CONF_H_
+#pragma once
 
 #ifndef __ASSEMBLER__
 #include <platform.h>
@@ -162,6 +161,4 @@
 
 #ifndef OUTPUT_FORMAT_COUNT
 #define OUTPUT_FORMAT_COUNT 1
-#endif
-
 #endif

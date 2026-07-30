@@ -1,6 +1,4 @@
-
-#ifndef _PCM5122_H_
-#define _PCM5122_H_
+#pragma once
 
 // PCM5122 (2-channel audio DAC) I2C Slave Addresses
 #define PCM5122_I2C_DEVICE_ADDR (0x4C)
@@ -66,5 +64,3 @@
 #define PCM5122_REG_POWER_STATE        0x76 ///< Power state and DSP boot status
 #define PCM5122_REG_GPIO_INPUT         0x77 ///< GPIO input
 #define PCM5122_REG_AUTO_MUTE_FLAG     0x78 ///< Auto mute flags
-
-#endif // _PCM5122_H_

@@ -1,5 +1,4 @@
-#ifndef _AUDIO_DEVICE_H_
-#define _AUDIO_DEVICE_H_
+#pragma once
 
 #include "i2c.h"
 #include "xassert.h"
@@ -14,9 +13,13 @@ typedef struct {
 void fc_audio_device_hw_init(CLIENT_INTERFACE(i2c_master_if, i2c),
                              const fc_audio_device_config_t &config);
 
+void fc_audio_device_hw_config_prepare(CLIENT_INTERFACE(i2c_master_if, i2c),
+                               const fc_audio_device_config_t &config, unsigned samFreq,
+                               unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
+                               unsigned sampRes_ADC);
+
 void fc_audio_device_hw_config(CLIENT_INTERFACE(i2c_master_if, i2c),
                                const fc_audio_device_config_t &config, unsigned samFreq,
                                unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
                                unsigned sampRes_ADC);
 
-#endif // _AUDIO_DEVICE_H_
