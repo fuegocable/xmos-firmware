@@ -60,6 +60,7 @@ set(FC_AUDIO_DEVICES_DIR "${FC_BASE_DIR}/common/audio_devices")
 set(XMOS_SANDBOX_DIR ${CMAKE_CURRENT_LIST_DIR}/sandbox)
 set(APP_DEPENDENT_MODULES "lib_xua(develop)"
                           "lib_i2c(6.4.1)"
+                          "lib_spi(4.0.0)"
                           "lib_i2s(6.0.1)"
                           "lib_xassert(4.3.2)"
                           "lib_logging(3.4.0)")

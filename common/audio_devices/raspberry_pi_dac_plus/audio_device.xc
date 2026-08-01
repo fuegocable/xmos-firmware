@@ -16,6 +16,7 @@ static i2c_regop_res_t write_pcm5122_reg(CLIENT_INTERFACE(i2c_master_if, i2c), i
 }
 
 void fc_audio_device_hw_init(CLIENT_INTERFACE(i2c_master_if, i2c),
+                             CLIENT_INTERFACE(spi_master_if, spi),
                              const fc_audio_device_config_t &config)
 {
     delay_milliseconds(100);
@@ -45,14 +46,16 @@ void fc_audio_device_hw_init(CLIENT_INTERFACE(i2c_master_if, i2c),
 }
 
 void fc_audio_device_hw_config_prepare(CLIENT_INTERFACE(i2c_master_if, i2c),
-                               const fc_audio_device_config_t &config, unsigned samFreq,
-                               unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
-                               unsigned sampRes_ADC)
+                                       CLIENT_INTERFACE(spi_master_if, spi),
+                                       const fc_audio_device_config_t &config, unsigned samFreq,
+                                       unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
+                                       unsigned sampRes_ADC)
 {
     // Mute
 }
 
 void fc_audio_device_hw_config(CLIENT_INTERFACE(i2c_master_if, i2c),
+                               CLIENT_INTERFACE(spi_master_if, spi),
                                const fc_audio_device_config_t &config, unsigned samFreq,
                                unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
                                unsigned sampRes_ADC)
