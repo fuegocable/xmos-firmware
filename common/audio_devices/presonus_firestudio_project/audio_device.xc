@@ -78,11 +78,11 @@ void fc_audio_device_hw_config(CLIENT_INTERFACE(i2c_master_if, i2c),
         */
     unsigned char regVal = 0;
     if(samFreq < 50000)
-        regVal = 0b00010100;
+        regVal = 0b11000100;
     else if(samFreq < 100000)
-        regVal = 0b00010101;
+        regVal = 0b11000101;
     else
-        regVal = 0b00010110;
+        regVal = 0b11000110;
 
     fc_presonus_fsp_dac_write_reg(spi, CS4385_PCM_CTRL, regVal);
 

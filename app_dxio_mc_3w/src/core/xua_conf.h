@@ -14,6 +14,9 @@
 #define BCD_DEVICE_N (0)
 #endif
 
+
+#define XUA_PCM_FORMAT XUA_PCM_FORMAT_TDM
+
 /*
  * Device configuration option defines to override default defines found in lib_xua/api/xua_conf_default.h
  *
@@ -66,12 +69,12 @@
 /*** Defines relating to channel counts ***/
 /* Number of I2S channels to DACs*/
 #ifndef I2S_CHANS_DAC
-#define I2S_CHANS_DAC (2)
+#define I2S_CHANS_DAC (8)
 #endif
 
 /* Number of I2S channels from ADCs */
 #ifndef I2S_CHANS_ADC
-#define I2S_CHANS_ADC (2)
+#define I2S_CHANS_ADC (8)
 #endif
 
 /* Number of USB streaming channels - by default calculate by counting audio interfaces */
