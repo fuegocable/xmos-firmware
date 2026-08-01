@@ -55,9 +55,9 @@
             <Port Location="XS1_PORT_4F"  Name="PORT_I2C"/>
 
             <!-- SPI -->         
-            <Port Location="XS1_PORT_1B"  Name="PORT_SPI_SCLK"/>
-            <Port Location="XS1_PORT_1A"  Name="PORT_SPI_MOSI"/>
-            <Port Location="XS1_PORT_1P"  Name="PORT_SPI_MISO"/>
+            <Port Location="XS1_PORT_1P"  Name="PORT_SPI_SCLK"/>
+            <Port Location="XS1_PORT_1A"  Name="PORT_SPI_MISO"/>
+            <Port Location="XS1_PORT_1B"  Name="PORT_SPI_MOSI"/>
             <Port Location="XS1_PORT_4C"  Name="PORT_SPI_SS"/>
 
             <!-- Ports for USB feedback calculation --> 

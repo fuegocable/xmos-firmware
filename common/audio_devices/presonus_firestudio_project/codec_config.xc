@@ -1,7 +1,6 @@
 #include "spi.h"
 #include "system.h"
 #include "codec_config.h"
-#include <xclib.h>
 
 #define ADC_DAC_SPI_MODE SPI_MODE_0
 
@@ -36,9 +35,9 @@ void fc_presonus_fsp_adc_write_reg(client interface spi_master_if spi, uint8_t r
 {
     spi.begin_transaction(ADC_DAC_SPI_DEVICE, ADC_DAC_SPI_SPEED_IN_KHZ, ADC_DAC_SPI_MODE);
     uint8_t cmd_header = ADC_SPI_ADDRESS << 1 | ADC_DAC_SPI_WRITE_INDICATOR;
-    spi.transfer8(bitrev(cmd_header));
-    spi.transfer8(bitrev(reg));
-    spi.transfer8(bitrev(data));
+    spi.transfer8(cmd_header);
+    spi.transfer8(reg);
+    spi.transfer8(data);
     spi.end_transaction(ADC_DAC_SPI_SS_DELAY);
 }
 
@@ -46,8 +45,8 @@ void fc_presonus_fsp_dac_write_reg(client interface spi_master_if spi, uint8_t r
 {
     spi.begin_transaction(ADC_DAC_SPI_DEVICE, ADC_DAC_SPI_SPEED_IN_KHZ, ADC_DAC_SPI_MODE);
     uint8_t cmd_header = DAC_SPI_ADDRESS << 1 | ADC_DAC_SPI_WRITE_INDICATOR;
-    spi.transfer8(bitrev(cmd_header));
-    spi.transfer8(bitrev(reg));
-    spi.transfer8(bitrev(data));
+    spi.transfer8(cmd_header);
+    spi.transfer8(reg);
+    spi.transfer8(data);
     spi.end_transaction(ADC_DAC_SPI_SS_DELAY);
 }
