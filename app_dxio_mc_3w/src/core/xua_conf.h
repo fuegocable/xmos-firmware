@@ -4,6 +4,8 @@
 #include <platform.h>
 #endif
 
+#include "audio_device_xua_conf.h"
+
 #ifndef BCD_DEVICE_J
 #define BCD_DEVICE_J (9)
 #endif
@@ -13,9 +15,6 @@
 #ifndef BCD_DEVICE_N
 #define BCD_DEVICE_N (0)
 #endif
-
-
-#define XUA_PCM_FORMAT XUA_PCM_FORMAT_TDM
 
 /*
  * Device configuration option defines to override default defines found in lib_xua/api/xua_conf_default.h

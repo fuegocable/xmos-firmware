@@ -4,7 +4,7 @@ project(app_dxio_mc_3w)
 set(APP_HW_TARGET dxio_mc_3w.xn)
 include(${CMAKE_CURRENT_LIST_DIR}/../common.cmake)
 
-set(APP_COMPILER_FLAGS ${EXTRA_BUILD_FLAGS} #-O0
+set(APP_COMPILER_FLAGS ${EXTRA_BUILD_FLAGS} -O0
                                             -report
                                             -lquadflash
                                             -g

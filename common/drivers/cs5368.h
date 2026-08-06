@@ -1,7 +1,7 @@
 #pragma once
 
 #define CS5368_I2C_ADDR (0x4C)
-#define CS5368_SPI_ADDR 0b0100111
+#define CS5368_SPI_ADDR 0b1001111
 
 // Register Addresess
 #define CS5368_CHIP_REV  0x00
