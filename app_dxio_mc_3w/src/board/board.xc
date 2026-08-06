@@ -45,10 +45,13 @@ void dxio_mc_3w_AudioHwConfig(CLIENT_INTERFACE(i2c_master_if, i2c),
                               unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
                               unsigned sampRes_ADC)
 {
-    fc_audio_device_hw_config_prepare(i2c, spi, config, samFreq, mClk, dsdMode, sampRes_DAC,
+    fc_audio_device_hw_config_begin(i2c, spi, config, samFreq, mClk, dsdMode, sampRes_DAC,
                                       sampRes_ADC);
 
     enable_mclk(mClk);
 
     fc_audio_device_hw_config(i2c, spi, config, samFreq, mClk, dsdMode, sampRes_DAC, sampRes_ADC);
+
+    fc_audio_device_hw_config_end(i2c, spi, config, samFreq, mClk, dsdMode, sampRes_DAC,
+                                      sampRes_ADC);
 }

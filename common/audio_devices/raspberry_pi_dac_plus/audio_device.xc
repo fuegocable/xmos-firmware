@@ -45,7 +45,7 @@ void fc_audio_device_hw_init(CLIENT_INTERFACE(i2c_master_if, i2c),
     write_pcm5122_reg(i2c, PCM5122_REG_STANDBY, 0x00);
 }
 
-void fc_audio_device_hw_config_prepare(CLIENT_INTERFACE(i2c_master_if, i2c),
+void fc_audio_device_hw_config_begin(CLIENT_INTERFACE(i2c_master_if, i2c),
                                        CLIENT_INTERFACE(spi_master_if, spi),
                                        const fc_audio_device_config_t &config, unsigned samFreq,
                                        unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
@@ -61,5 +61,13 @@ void fc_audio_device_hw_config(CLIENT_INTERFACE(i2c_master_if, i2c),
                                unsigned sampRes_ADC)
 {
     // Config
+}
+
+void fc_audio_device_hw_config_end(CLIENT_INTERFACE(i2c_master_if, i2c),
+                                       CLIENT_INTERFACE(spi_master_if, spi),
+                                       const fc_audio_device_config_t &config, unsigned samFreq,
+                                       unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
+                                       unsigned sampRes_ADC)
+{
     // Unmute
 }
