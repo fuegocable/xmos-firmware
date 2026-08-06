@@ -10,3 +10,9 @@ on tile[XUA_AUDIO_IO_TILE_NUM]:
         i_spi_client = spi[0];
     }
 }
+
+on tile[XUA_XUD_TILE_NUM]:
+{
+    // Fuegocable audio device main function
+    fc_audio_device_main();
+}

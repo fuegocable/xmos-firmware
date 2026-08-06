@@ -15,6 +15,10 @@ static i2c_regop_res_t write_pcm5122_reg(CLIENT_INTERFACE(i2c_master_if, i2c), i
     return result;
 }
 
+void fc_audio_device_main()
+{
+}
+
 void fc_audio_device_hw_init(CLIENT_INTERFACE(i2c_master_if, i2c),
                              CLIENT_INTERFACE(spi_master_if, spi),
                              const fc_audio_device_config_t &config)

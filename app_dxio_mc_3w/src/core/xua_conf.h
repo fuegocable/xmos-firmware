@@ -133,11 +133,25 @@
 #define XUA_MIDI_TILE_NUM (1)
 
 /*** Defines relating to USB descriptor strings and ID's ***/
+#ifndef VENDOR_ID
 #define VENDOR_ID (0x20B1)   /* XMOS VID */
+#endif
+
+#ifndef PID_AUDIO_2
 #define PID_AUDIO_2 (0x000E) /* XK-AUDIO-216-MC USB Audio Reference Design PID */
+#endif
+
+#ifndef PID_AUDIO_1
 #define PID_AUDIO_1 (0x000F) /* XK-AUDIO-216-MC USB Audio Reference Design PID */
+#endif
+
+#ifndef PRODUCT_STR_A2
 #define PRODUCT_STR_A2 "XMOS Fuegocable (UAC2.0)"
+#endif
+
+#ifndef PRODUCT_STR_A1
 #define PRODUCT_STR_A1 "XMOS Fuegocable (UAC1.0)"
+#endif
 
 #ifndef DFU_PID
 #if (AUDIO_CLASS == 1)

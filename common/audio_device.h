@@ -11,6 +11,8 @@ typedef struct {
     unsigned i2s_n_bits;
 } fc_audio_device_config_t;
 
+void fc_audio_device_main();
+
 void fc_audio_device_hw_init(CLIENT_INTERFACE(i2c_master_if, i2c),
                              CLIENT_INTERFACE(spi_master_if, spi),
                              const fc_audio_device_config_t &config);

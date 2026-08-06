@@ -1,4 +1,5 @@
 #include <board/board.h>
+#include "audio_device.h"
 
 extern unsafe client interface i2c_master_if i_i2c_client;
 extern unsafe client interface spi_master_if i_spi_client;

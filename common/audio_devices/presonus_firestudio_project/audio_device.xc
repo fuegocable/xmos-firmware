@@ -8,6 +8,12 @@
 #include "xassert.h"
 #include <assert.h>
 #include <xs1.h>
+#include "xua_endpoint0.h"
+
+void fc_audio_device_main()
+{
+    XUA_Endpoint0_setSerialStr(PRESONUS_DEFAULT_SERIAL_STRING);
+}
 
 void fc_audio_device_hw_init(CLIENT_INTERFACE(i2c_master_if, i2c),
                              CLIENT_INTERFACE(spi_master_if, spi),
