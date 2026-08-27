@@ -16,16 +16,14 @@ void fc_audio_device_main()
 }
 
 void fc_audio_device_hw_init(CLIENT_INTERFACE(i2c_master_if, i2c),
-                             CLIENT_INTERFACE(spi_master_if, spi),
                              const fc_audio_device_config_t &config)
 {
-    fc_presonus_fsp_adc_dac_config_spi_bus(spi);
-    fc_presonus_fsp_adc_write_reg(spi, CS5368_GCTL_MDE, 0b10000000);
-    fc_presonus_fsp_dac_write_reg(spi, CS4385_MODE_CTRL, 0b10000000);
+    fc_presonus_fsp_adc_dac_config_spi_bus();
+    fc_presonus_fsp_adc_write_reg(CS5368_GCTL_MDE, 0b10000000);
+    fc_presonus_fsp_dac_write_reg(CS4385_MODE_CTRL, 0b10000000);
 }
 
 void fc_audio_device_hw_config_begin(CLIENT_INTERFACE(i2c_master_if, i2c),
-                                     CLIENT_INTERFACE(spi_master_if, spi),
                                      const fc_audio_device_config_t &config, unsigned samFreq,
                                      unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
                                      unsigned sampRes_ADC)
@@ -34,7 +32,6 @@ void fc_audio_device_hw_config_begin(CLIENT_INTERFACE(i2c_master_if, i2c),
 }
 
 void fc_audio_device_hw_config(CLIENT_INTERFACE(i2c_master_if, i2c),
-                               CLIENT_INTERFACE(spi_master_if, spi),
                                const fc_audio_device_config_t &config, unsigned samFreq,
                                unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
                                unsigned sampRes_ADC)
@@ -61,7 +58,7 @@ void fc_audio_device_hw_config(CLIENT_INTERFACE(i2c_master_if, i2c),
     } else {
         speed_mode = 0b01;
     }
-    fc_presonus_fsp_adc_write_reg(spi, CS5368_GCTL_MDE,
+    fc_presonus_fsp_adc_write_reg(CS5368_GCTL_MDE,
                                   0b10000000 | (mlk_div << 4) | (data_format << 2) | speed_mode);
 
     /**
@@ -76,12 +73,11 @@ void fc_audio_device_hw_config(CLIENT_INTERFACE(i2c_master_if, i2c),
     unsigned char format          = 0b1100; // TDM
     unsigned char functional_mode = 0b11;   // Auto-speed detect
 
-    fc_presonus_fsp_dac_write_reg(spi, CS4385_PCM_CTRL,
+    fc_presonus_fsp_dac_write_reg(CS4385_PCM_CTRL,
                                   (format << 4) | (0b00 << 2) | functional_mode);
 }
 
 void fc_audio_device_hw_config_end(CLIENT_INTERFACE(i2c_master_if, i2c),
-                                   CLIENT_INTERFACE(spi_master_if, spi),
                                    const fc_audio_device_config_t &config, unsigned samFreq,
                                    unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
                                    unsigned sampRes_ADC)
@@ -89,8 +85,8 @@ void fc_audio_device_hw_config_end(CLIENT_INTERFACE(i2c_master_if, i2c),
     // Unmute
 
     /* Reg 0x06: Power Down */
-    fc_presonus_fsp_adc_write_reg(spi, CS5368_PWR_DN, 0b00000000);
+    fc_presonus_fsp_adc_write_reg(CS5368_PWR_DN, 0b00000000);
 
     /* Reg 0x02: Mode Control */
-    fc_presonus_fsp_dac_write_reg(spi, CS4385_MODE_CTRL, 0b10000000);
+    fc_presonus_fsp_dac_write_reg(CS4385_MODE_CTRL, 0b10000000);
 }

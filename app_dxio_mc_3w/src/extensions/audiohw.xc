@@ -8,7 +8,7 @@ static const fc_audio_device_config_t config = {
 };
 
 unsafe client interface i2c_master_if i_i2c_client;
-unsafe client interface spi_master_if i_spi_client;
+extern unsafe client interface spi_master_if fc_spi_client;
 
 void AudioHwInit()
 {
@@ -17,10 +17,9 @@ void AudioHwInit()
         /* Wait until global is set */
         while (!(unsigned)i_i2c_client)
             ;
-        while (!(unsigned)i_spi_client)
+        while (!(unsigned)fc_spi_client)
             ;
-        dxio_mc_3w_AudioHwInit((client interface i2c_master_if)i_i2c_client,
-                               (client interface spi_master_if)i_spi_client, config);
+        dxio_mc_3w_AudioHwInit((client interface i2c_master_if)i_i2c_client, config);
     }
 }
 
@@ -29,8 +28,7 @@ void AudioHwConfig(unsigned samFreq, unsigned mClk, unsigned dsdMode, unsigned s
 {
     unsafe
     {
-        dxio_mc_3w_AudioHwConfig((client interface i2c_master_if)i_i2c_client,
-                                 (client interface spi_master_if)i_spi_client, config, samFreq,
+        dxio_mc_3w_AudioHwConfig((client interface i2c_master_if)i_i2c_client, config, samFreq,
                                  mClk, dsdMode, sampRes_DAC, sampRes_ADC);
     }
 }

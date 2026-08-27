@@ -33,25 +33,23 @@ void dxio_mc_3w_spi_master(SERVER_INTERFACE(spi_master_if, spi[1]))
 }
 
 void dxio_mc_3w_AudioHwInit(CLIENT_INTERFACE(i2c_master_if, i2c),
-                            CLIENT_INTERFACE(spi_master_if, spi),
                             const fc_audio_device_config_t &config)
 {
-    fc_audio_device_hw_init(i2c, spi, config);
+    fc_audio_device_hw_init(i2c, config);
 }
 
 void dxio_mc_3w_AudioHwConfig(CLIENT_INTERFACE(i2c_master_if, i2c),
-                              CLIENT_INTERFACE(spi_master_if, spi),
                               const fc_audio_device_config_t &config, unsigned samFreq,
                               unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
                               unsigned sampRes_ADC)
 {
-    fc_audio_device_hw_config_begin(i2c, spi, config, samFreq, mClk, dsdMode, sampRes_DAC,
+    fc_audio_device_hw_config_begin(i2c, config, samFreq, mClk, dsdMode, sampRes_DAC,
                                       sampRes_ADC);
 
     enable_mclk(mClk);
 
-    fc_audio_device_hw_config(i2c, spi, config, samFreq, mClk, dsdMode, sampRes_DAC, sampRes_ADC);
+    fc_audio_device_hw_config(i2c, config, samFreq, mClk, dsdMode, sampRes_DAC, sampRes_ADC);
 
-    fc_audio_device_hw_config_end(i2c, spi, config, samFreq, mClk, dsdMode, sampRes_DAC,
+    fc_audio_device_hw_config_end(i2c, config, samFreq, mClk, dsdMode, sampRes_DAC,
                                       sampRes_ADC);
 }

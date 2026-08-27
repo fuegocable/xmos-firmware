@@ -1,6 +1,6 @@
 #include <stdint.h>
+#include "fc_spi.h"
 #include "board/board_gpio.h"
-#include "spi.h"
 #include "drivers/cs5368.h"
 #include "drivers/cs4385.h"
 
@@ -16,6 +16,8 @@
 #define ADC_SPI_ADDRESS CS5368_SPI_ADDR
 #define DAC_SPI_ADDRESS CS4385_SPI_ADDR
 
-void fc_presonus_fsp_adc_dac_config_spi_bus(client interface spi_master_if spi);
-void fc_presonus_fsp_adc_write_reg(client interface spi_master_if spi, uint8_t register, uint8_t data);
-void fc_presonus_fsp_dac_write_reg(client interface spi_master_if spi, uint8_t register, uint8_t data);
+#define ADC_DAC_SPI_MODE FC_SPI_MODE_0
+
+void fc_presonus_fsp_adc_dac_config_spi_bus();
+void fc_presonus_fsp_adc_write_reg(uint8_t register, uint8_t data);
+void fc_presonus_fsp_dac_write_reg(uint8_t register, uint8_t data);

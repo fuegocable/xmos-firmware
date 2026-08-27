@@ -7,7 +7,7 @@ on tile[XUA_AUDIO_IO_TILE_NUM]:
     unsafe
     {
         i_i2c_client = i2c[0];
-        i_spi_client = spi[0];
+        fc_spi_client = spi[0];
     }
 }
 

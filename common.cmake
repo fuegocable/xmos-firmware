@@ -67,7 +67,8 @@ set(APP_DEPENDENT_MODULES "lib_xua(develop)"
 
 # Common includes
 set(FC_COMMON_INCLUDES "${CMAKE_CURRENT_LIST_DIR}/common"
-                       "${CMAKE_CURRENT_LIST_DIR}/common/drivers")
+                       "${CMAKE_CURRENT_LIST_DIR}/common/drivers"
+                       "${CMAKE_CURRENT_LIST_DIR}/common/wrappers")
 
 # Common sources
 # We exclude all audio_devices sources because we will add them in each build
