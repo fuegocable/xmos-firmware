@@ -1,5 +1,7 @@
 #pragma once
 
+// TODO: change i2c-utils filename to i2c_utils
+
 #include "i2c.h"
 
 // TODO: Temp type definition copying sandbox/lib_i2c/lib_i2c/api/i2c.h. We need to revisiting it when making i2c wrapper
