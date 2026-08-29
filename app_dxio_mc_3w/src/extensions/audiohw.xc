@@ -7,6 +7,7 @@ static const fc_audio_device_config_t config = {
     XUA_I2S_N_BITS,
 };
 
+// TODO: make i2c wrapper
 unsafe client interface i2c_master_if i_i2c_client;
 extern unsafe client interface spi_master_if fc_spi_client;
 
