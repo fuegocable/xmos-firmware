@@ -16,7 +16,7 @@ void fc_audio_device_main()
 }
 
 void fc_audio_device_hw_init(CLIENT_INTERFACE(i2c_master_if, i2c),
-                             const fc_audio_device_config_t &config)
+                             const REFERENCE_PARAM(fc_audio_device_config_t, config))
 {
     fc_presonus_fsp_adc_dac_config_spi_bus();
     fc_presonus_fsp_adc_write_reg(CS5368_GCTL_MDE, 0b10000000);
@@ -24,7 +24,7 @@ void fc_audio_device_hw_init(CLIENT_INTERFACE(i2c_master_if, i2c),
 }
 
 void fc_audio_device_hw_config_begin(CLIENT_INTERFACE(i2c_master_if, i2c),
-                                     const fc_audio_device_config_t &config, unsigned samFreq,
+                                     const REFERENCE_PARAM(fc_audio_device_config_t, config), unsigned samFreq,
                                      unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
                                      unsigned sampRes_ADC)
 {
@@ -32,7 +32,7 @@ void fc_audio_device_hw_config_begin(CLIENT_INTERFACE(i2c_master_if, i2c),
 }
 
 void fc_audio_device_hw_config(CLIENT_INTERFACE(i2c_master_if, i2c),
-                               const fc_audio_device_config_t &config, unsigned samFreq,
+                               const REFERENCE_PARAM(fc_audio_device_config_t, config), unsigned samFreq,
                                unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
                                unsigned sampRes_ADC)
 {
@@ -78,7 +78,7 @@ void fc_audio_device_hw_config(CLIENT_INTERFACE(i2c_master_if, i2c),
 }
 
 void fc_audio_device_hw_config_end(CLIENT_INTERFACE(i2c_master_if, i2c),
-                                   const fc_audio_device_config_t &config, unsigned samFreq,
+                                   const REFERENCE_PARAM(fc_audio_device_config_t, config), unsigned samFreq,
                                    unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
                                    unsigned sampRes_ADC)
 {

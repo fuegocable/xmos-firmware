@@ -6,12 +6,12 @@
 #include <assert.h>
 #include <drivers/pcm5122.h>
 
-static i2c_regop_res_t write_pcm5122_reg(CLIENT_INTERFACE(i2c_master_if, i2c), int regAddr,
+static fc_i2c_regop_res_t write_pcm5122_reg(CLIENT_INTERFACE(i2c_master_if, i2c), int regAddr,
                                          int regData)
 {
-    i2c_regop_res_t result;
+    fc_i2c_regop_res_t result;
     unsafe { result = i2c_reg_write(i2c, PCM5122_I2C_DEVICE_ADDR, regAddr, regData); }
-    assert(result == I2C_REGOP_SUCCESS && msg("I2C write reg failed"));
+    assert(result == FC_I2C_REGOP_SUCCESS && msg("I2C write reg failed"));
     return result;
 }
 
@@ -20,7 +20,7 @@ void fc_audio_device_main()
 }
 
 void fc_audio_device_hw_init(CLIENT_INTERFACE(i2c_master_if, i2c),
-                             const fc_audio_device_config_t &config)
+                             const REFERENCE_PARAM(fc_audio_device_config_t, config))
 {
     delay_milliseconds(100);
     write_pcm5122_reg(i2c, PCM5122_REG_PAGE_SELECT, 0x00);
@@ -31,7 +31,7 @@ void fc_audio_device_hw_init(CLIENT_INTERFACE(i2c_master_if, i2c),
     write_pcm5122_reg(i2c, PCM5122_REG_PLL_REF, 0x10);
 
     int alen = 0b11;
-    switch (config.i2s_n_bits) {
+    switch (config->i2s_n_bits) {
         case 16:
             alen = 0b00;
             break;
@@ -49,7 +49,7 @@ void fc_audio_device_hw_init(CLIENT_INTERFACE(i2c_master_if, i2c),
 }
 
 void fc_audio_device_hw_config_begin(CLIENT_INTERFACE(i2c_master_if, i2c),
-                                       const fc_audio_device_config_t &config, unsigned samFreq,
+                                       const REFERENCE_PARAM(fc_audio_device_config_t, config), unsigned samFreq,
                                        unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
                                        unsigned sampRes_ADC)
 {
@@ -57,7 +57,7 @@ void fc_audio_device_hw_config_begin(CLIENT_INTERFACE(i2c_master_if, i2c),
 }
 
 void fc_audio_device_hw_config(CLIENT_INTERFACE(i2c_master_if, i2c),
-                               const fc_audio_device_config_t &config, unsigned samFreq,
+                               const REFERENCE_PARAM(fc_audio_device_config_t, config), unsigned samFreq,
                                unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
                                unsigned sampRes_ADC)
 {
@@ -65,7 +65,7 @@ void fc_audio_device_hw_config(CLIENT_INTERFACE(i2c_master_if, i2c),
 }
 
 void fc_audio_device_hw_config_end(CLIENT_INTERFACE(i2c_master_if, i2c),
-                                       const fc_audio_device_config_t &config, unsigned samFreq,
+                                       const REFERENCE_PARAM(fc_audio_device_config_t, config), unsigned samFreq,
                                        unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
                                        unsigned sampRes_ADC)
 {

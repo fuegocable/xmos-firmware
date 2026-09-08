@@ -1,6 +1,7 @@
 #pragma once
 
 #include "i2c.h"
+#include "spi.h"
 #include <xccompat.h>
 #include "audio_device.h"
 

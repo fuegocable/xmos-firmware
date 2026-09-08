@@ -1,6 +1,7 @@
 #include "fc_spi.h"
 #include "system.h"
 #include "codec_config.h"
+#include <xs1.h>
 
 void fc_presonus_fsp_adc_dac_config_spi_bus()
 {
