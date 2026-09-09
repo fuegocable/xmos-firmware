@@ -1,10 +1,20 @@
+#include <xua_audiohub.h>
+#include <math.h>
+#include <stdint.h>
+#include <xcore/hwtimer.h>
+#include "audio_device_ui.h"
+
 void fc_ui_refresh_thread()
 {
-    // register timer and add select
-
-    // on timer:
-        // read vumeter global variable and copy to other local var
-        // set global vu to 0 (así sigue acumulando máximos el otro thread)
-        // calc dbfs
-        // call fc_audio_device_update_vumeter o algo así, definido en audio_device que llame a spi en presonus xejemplo
+    const uint32_t refresh_interval_ms = 500;
+    const uint32_t ref_clock_freq = 100000000; // 100MHz reference clock
+    const uint32_t refresh_interval_ticks = (refresh_interval_ms * ref_clock_freq) / 1000;
+    
+    while (1) {
+        uint32_t next_update = get_reference_time() + refresh_interval_ticks;
+        
+        fc_audio_device_ui_refresh();
+        
+        while (get_reference_time() < next_update);
+    }
 }

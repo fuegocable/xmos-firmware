@@ -1,13 +1,24 @@
 #include <xua_audiohub.h>
+#include <math.h>
+#include <stdint.h>
 
-int32_t inputVumeter[I2S_CHANS_ADC];
+// TODO: no usar un número fijo, usar I2S_CHANS_ADC. hay que definirlo en el audio_device
+#define VUMETER_NUM_CHANNELS 8
 
-void UserBufferManagement(unsigned *samplesFromUsbToAudio, unsigned *samplesFromAudioToUsb)
+int32_t inputVumeter[VUMETER_NUM_CHANNELS];
+
+void UserBufferManagementInit(unsigned sampFreq)
 {
-    /** Copy samples to vumeter array */
+    for(unsigned i = 0; i < VUMETER_NUM_CHANNELS; i++) {
+        inputVumeter[i] = 0;
+    }
+}
+
+void UserBufferManagement(unsigned sampsFromUsbToAudio[], unsigned sampsFromAudioToUsb[])
+{
     int32_t currentSample;
-    for(unsigned i = 0; i < I2S_CHANS_ADC; i++) {
-        currentSample = ((int32_t *)samplesFromAudioToUsb)[i];
+    for(unsigned i = 0; i < VUMETER_NUM_CHANNELS; i++) {
+        currentSample = ((int32_t *)sampsFromAudioToUsb)[i];
         currentSample = currentSample > 0 ? currentSample : -currentSample;
         inputVumeter[i] = (inputVumeter[i] > currentSample) ? inputVumeter[i] : currentSample;
     }

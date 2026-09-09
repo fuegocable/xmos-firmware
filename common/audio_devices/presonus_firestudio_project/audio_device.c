@@ -9,10 +9,33 @@
 #include <assert.h>
 #include <xs1.h>
 #include "xua_endpoint0.h"
+#include "audio_device_ui.h"
+
+extern int32_t inputVumeter[];
+char channel_leds[8] = {0};
+int is_ui_initialized = 0;
 
 void fc_audio_device_main()
 {
     XUA_Endpoint0_setSerialStr(PRESONUS_DEFAULT_SERIAL_STRING);
+}
+
+void fc_audio_device_ui_refresh()
+{
+    if (!is_ui_initialized) {
+        return;
+    }
+
+    for (unsigned ch = 0; ch < I2S_CHANS_ADC; ch++) {
+        int32_t peak = inputVumeter[ch];
+        inputVumeter[ch] = 0;
+
+        uint8_t led_value = fc_presonus_fsp_sample_to_led_value(peak);
+        
+        channel_leds[ch] = led_value;
+    }
+    
+    fc_presonus_fsp_meters_update(channel_leds);
 }
 
 void fc_audio_device_hw_init(CLIENT_INTERFACE(i2c_master_if, i2c),
@@ -21,6 +44,14 @@ void fc_audio_device_hw_init(CLIENT_INTERFACE(i2c_master_if, i2c),
     fc_presonus_fsp_adc_dac_config_spi_bus();
     fc_presonus_fsp_adc_write_reg(CS5368_GCTL_MDE, 0b10000000);
     fc_presonus_fsp_dac_write_reg(CS4385_MODE_CTRL, 0b10000000);
+
+    /** Leds **/
+    fc_presonus_fsp_meters_output_enable();
+    delay_milliseconds(10);
+    fc_spi_set_ss_port_bit(METERS_SPI_DEVICE, METERS_SPI_SS_BIT);
+    // TODO: Make init animation on leds (non-blocking)
+    fc_presonus_fsp_meters_update((char[8]){0, 0, 0, 0, 0, 0, 0, 0});
+    is_ui_initialized = 1;
 }
 
 void fc_audio_device_hw_config_begin(CLIENT_INTERFACE(i2c_master_if, i2c),
