@@ -31,6 +31,9 @@ void fc_audio_device_hw_config_end(CLIENT_INTERFACE(i2c_master_if, i2c),
                                        unsigned mClk, unsigned dsdMode, unsigned sampRes_DAC,
                                        unsigned sampRes_ADC);
 
+void fc_audio_device_buffer_management_init(unsigned sampFreq); // TODO: Implement as weak (it is an optional function)
+void fc_audio_device_buffer_management(unsigned sampsFromUsbToAudio[], unsigned sampsFromAudioToUsb[]); // TODO: Implement as weak (it is an optional function)
+
 /* Forward declaration for XUA function (from lib_xua) - only for C files, not XC */
 #ifndef __XC__
 void XUA_Endpoint0_setSerialStr(char * serial_str);

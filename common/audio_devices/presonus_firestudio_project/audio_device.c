@@ -11,13 +11,36 @@
 #include "xua_endpoint0.h"
 #include "audio_device_ui.h"
 
-extern int32_t inputVumeter[];
-char channel_leds[8] = {0};
+/**
+ * UI Logic
+ */
+
+// TODO: no usar un número fijo, usar I2S_CHANS_ADC. hay que definirlo en el audio_device
+#define VUMETER_NUM_CHANNELS 8
+int32_t inputVumeter[VUMETER_NUM_CHANNELS];
+char channel_leds[VUMETER_NUM_CHANNELS] = {0};
 int is_ui_initialized = 0;
 
-void fc_audio_device_main()
+void fc_audio_device_buffer_management_init(unsigned sampFreq)
 {
-    XUA_Endpoint0_setSerialStr(PRESONUS_DEFAULT_SERIAL_STRING);
+    for(unsigned i = 0; i < VUMETER_NUM_CHANNELS; i++) {
+        inputVumeter[i] = 0;
+    }
+}
+
+void fc_audio_device_buffer_management(unsigned sampsFromUsbToAudio[], unsigned sampsFromAudioToUsb[])
+{
+    int32_t currentSample;
+    for(unsigned i = 0; i < VUMETER_NUM_CHANNELS; i++) {
+        currentSample = ((int32_t)sampsFromAudioToUsb[i]) >> 8;
+        currentSample = currentSample < 0 ? -currentSample : currentSample;
+        if (currentSample > inputVumeter[i]) {
+            inputVumeter[i] = currentSample;
+        }else{
+            // Decay aprox inputVumeter *= 255/256 = 0.99609375
+            inputVumeter[i] -= inputVumeter[i] >> 8;
+        }
+    }
 }
 
 void fc_audio_device_ui_refresh()
@@ -26,17 +49,23 @@ void fc_audio_device_ui_refresh()
         return;
     }
 
-    for (unsigned ch = 0; ch < I2S_CHANS_ADC; ch++) {
-        int32_t peak = inputVumeter[ch];
-        inputVumeter[ch] = 0;
-
-        uint8_t led_value = fc_presonus_fsp_sample_to_led_value(peak);
-        
-        channel_leds[ch] = led_value;
+    for (unsigned ch = 0; ch < VUMETER_NUM_CHANNELS; ch++) {
+        // TODO: Check if there is a mistake between int and float types with samples
+        channel_leds[ch] = fc_presonus_fsp_sample_to_led_value((int32_t)(inputVumeter[ch]));
     }
     
     fc_presonus_fsp_meters_update(channel_leds);
 }
+
+/**
+ * Audio Hardware
+ */
+
+void fc_audio_device_main()
+{
+    XUA_Endpoint0_setSerialStr(PRESONUS_DEFAULT_SERIAL_STRING);
+}
+
 
 void fc_audio_device_hw_init(CLIENT_INTERFACE(i2c_master_if, i2c),
                              const REFERENCE_PARAM(fc_audio_device_config_t, config))
