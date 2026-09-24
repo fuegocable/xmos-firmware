@@ -1,3 +1,4 @@
+// Include fuegocable common xua conf tasks
 #include "fc_xua_conf_tasks.h"
 
 on tile[PORT_I2C_TILE_NUM]: { dxio_mc_3w_i2c_master(i2c); }

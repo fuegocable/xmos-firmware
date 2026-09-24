@@ -4,7 +4,8 @@
 #include <platform.h>
 #endif
 
-#include "audio_device_xua_conf.h"
+// Include fuegocable common xua conf
+#include "fc_xua_conf.h"
 
 #ifndef BCD_DEVICE_J
 #define BCD_DEVICE_J (9)

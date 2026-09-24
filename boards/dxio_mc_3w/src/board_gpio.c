@@ -1,5 +1,5 @@
 #include <platform.h>
-#include "board/board_gpio.h"
+#include "board_gpio.h"
 #include <swlock.h>
 #include <xcore/port.h>
 #include <xs1.h>

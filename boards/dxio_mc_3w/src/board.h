@@ -5,14 +5,6 @@
 #include <xccompat.h>
 #include "audio_device.h"
 
-/**
- * @brief Configuration struct type for setting the hardware profile.
- */
-typedef struct {
-    /** I2S word length in bits. */
-    unsigned i2s_n_bits;
-} dxio_mc_3w_config_t;
-
 void dxio_mc_3w_i2c_master(SERVER_INTERFACE(i2c_master_if, i2c[1]));
 
 void dxio_mc_3w_spi_master(SERVER_INTERFACE(spi_master_if, spi[1]));

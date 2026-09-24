@@ -1,8 +1,8 @@
 #include <assert.h>
 #include <xs1.h>
 
-#include "board/board.h"
-#include "board/board_gpio.h"
+#include "board.h"
+#include "board_gpio.h"
 #include "xassert.h"
 #include <platform.h>
 

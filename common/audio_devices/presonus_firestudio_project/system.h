@@ -1,5 +1,5 @@
 #include <stdint.h>
-#include "board/board_gpio.h"
+#include "board_gpio.h"
 #include "fc_spi.h"
 
 #define P_METERS_OUTPUT_ENABLE_N_GPIO P_FC_GPIO_0

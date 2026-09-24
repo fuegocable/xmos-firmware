@@ -1,6 +1,6 @@
 #include "xua.h"
 
-#include <board/board.h>
+#include "board.h"
 
 static const fc_audio_device_config_t config = {
     // i2s_n_bits

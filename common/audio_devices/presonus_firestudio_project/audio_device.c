@@ -15,7 +15,7 @@
  * UI Logic
  */
 
-// TODO: no usar un número fijo, usar I2S_CHANS_ADC. hay que definirlo en el audio_device
+// TODO: instead of using a fixed number, use I2S_CHANS_ADC. It should be defined in the audio_device
 #define VUMETER_NUM_CHANNELS 8
 int32_t inputVumeter[VUMETER_NUM_CHANNELS];
 char channel_leds[VUMETER_NUM_CHANNELS] = {0};

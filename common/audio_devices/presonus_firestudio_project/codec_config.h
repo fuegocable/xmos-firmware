@@ -1,6 +1,5 @@
 #include <stdint.h>
 #include "fc_spi.h"
-#include "board/board_gpio.h"
 #include "drivers/cs5368.h"
 #include "drivers/cs4385.h"
 
