@@ -7,16 +7,6 @@
 // Include fuegocable common xua conf
 #include "fc_xua_conf.h"
 
-#ifndef BCD_DEVICE_J
-#define BCD_DEVICE_J (9)
-#endif
-#ifndef BCD_DEVICE_M
-#define BCD_DEVICE_M (2)
-#endif
-#ifndef BCD_DEVICE_N
-#define BCD_DEVICE_N (0)
-#endif
-
 /*
  * Device configuration option defines to override default defines found in lib_xua/api/xua_conf_default.h
  *
