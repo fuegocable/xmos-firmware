@@ -31,11 +31,6 @@
             <Port Location="XS1_PORT_1K"  Name="PORT_I2S_ADC1"/>
             <Port Location="XS1_PORT_1J"  Name="PORT_I2S_ADC2"/>
             <Port Location="XS1_PORT_1I"  Name="PORT_I2S_ADC3"/>
-            <Port Location="XS1_PORT_1M"  Name="PORT_DSD_DAC0"/>
-            <port Location="XS1_PORT_1N"  Name="PORT_DSD_DAC1"/>
-            <Port Location="XS1_PORT_1G"  Name="PORT_DSD_CLK"/>
-            <Port Location="XS1_PORT_1E"  Name="PORT_ADAT_OUT"/>-->  <!-- D: COAX E: OPT --> 
-            <Port Location="XS1_PORT_1D"  Name="PORT_SPDIF_OUT"/>--> <!-- D: COAX E: OPT --> 
 
             <!-- GPIO -->         
             <Port Location="XS1_PORT_8C"  Name="PORT_GPIO_0"/>
