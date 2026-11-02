@@ -1,4 +1,4 @@
-[![Open Source AI Manifesto](https://human-oss.dev/badge.svg)](https://human-oss.dev)
+[![Open Source AI Manifesto](https://human-oss.dev/badge.svg)](https://human-oss.dev) - Check the project's docs page about [AI usage](https://fuegocable.org/docs/ai-usage)
 
 
 > [!IMPORTANT]
